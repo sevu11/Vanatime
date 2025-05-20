@@ -1,23 +1,22 @@
-# Vanadiel Time
+# Vanatime
 
-[![npm version](https://img.shields.io/npm/v/vanadiel-time.svg)](https://www.npmjs.com/package/vanadiel-time)
+[![npm version](https://img.shields.io/npm/v/vanatime.svg)](https://www.npmjs.com/package/vanatime)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A TypeScript library for calculating and displaying Vana'diel time from Final Fantasy XI, with Vue 3 components.
+A TypeScript library for calculating Vana'diel time from Final Fantasy XI.
 
 ## Installation
 
 ```bash
-npm install vanadiel-time
+npm install vanatime
 # or
-yarn add vanadiel-time
+yarn add vanatime
 ```
 
 ## Features
 
 - 🕒 Accurate Vana'diel time calculation
 - 📅 Complete date and moon phase information
-- 🖼️ Ready-to-use Vue 3 components
 - 🧮 Standalone calculator with no dependencies
 - 📏 Fully typed with TypeScript
 
@@ -26,58 +25,30 @@ yarn add vanadiel-time
 ### Calculator Utility
 
 ```typescript
-import { VanaTimeCalculator } from 'vanadiel-time';
+import { VanaTimeCalculator } from 'vanatime';
 
 // Get current time
 const vanaTime = VanaTimeCalculator.getTime();
-console.log(vanaTime.formatted); // "12:34:56"
+console.log(vanaTime.formatted); // "12:34"
 
 // Get date information
 const vanaDate = VanaTimeCalculator.getDate();
 console.log(
-  `${vanaDate.weekdayName}, ${vanaDate.monthName} ${vanaDate.day}, ${vanaDate.year}`
-); // "Firesday, Järremont 15, 850"
+  `${vanaDate.weekdayName}, ${vanaDate.day}/${vanaDate.month}, ${vanaDate.year}`
+); // "Firesday, 15/5, 850"
 
 // Get moon information
 console.log(`${vanaDate.moonPhaseName} (${vanaDate.moonPercent}%)`); // "Waxing Crescent (35%)"
 
-// Get everything at once
-const fullTimestamp = VanaTimeCalculator.getFullTimestamp();
-```
-
-### Vue 3 Components
-
-```vue
-<template>
-  <!-- Simple clock component -->
-  <SimpleVanadielClock />
-  
-  <!-- Configure display options -->
-  <SimpleVanadielClock :showDate="false" :showMoon="true" />
-  
-  <!-- Set update frequency (in milliseconds) -->
-  <SimpleVanadielClock :updateInterval="500" />
-  
-  <!-- Alternative component with different styling -->
-  <VanadielTime />
-</template>
-
-<script>
-import { SimpleVanadielClock, VanadielTime } from 'vanadiel-time';
-
-export default {
-  components: {
-    SimpleVanadielClock,
-    VanadielTime
-  }
-}
-</script>
+// Get formatted date and time
+const formattedDateTime = VanaTimeCalculator.formatDateTime();
+console.log(formattedDateTime); // "12:34 on Firesday, 15/5, 850"
 ```
 
 ### Helper Functions
 
 ```typescript
-import { isVanadielDay, secondsUntilNextDay } from 'vanadiel-time';
+import { isVanadielDay, secondsUntilNextDay } from 'vanatime';
 
 // Check if it's day or night
 const vanaTime = VanaTimeCalculator.getTime();
@@ -100,24 +71,15 @@ Static methods:
 - `getVanaSeconds()` - Get current Vana'diel time in seconds
 - `getTime()` - Get current time (hours, minutes, seconds, formatted)
 - `getDate()` - Get current date information
-- `getFullTimestamp()` - Get complete time and date information
 - `formatDateTime()` - Get formatted date and time string
 
-### Vue Components
+### Helper Functions
 
-#### SimpleVanadielClock
-
-Props:
-- `showDate` (boolean, default: true) - Show date information
-- `showMoon` (boolean, default: true) - Show moon information
-- `updateInterval` (number, default: 1000) - Update interval in milliseconds
-
-#### VanadielTime
-
-Props:
-- `showDate` (boolean, default: true) - Show date information
-- `showMoon` (boolean, default: true) - Show moon information
-- `updateInterval` (number, default: 1000) - Update interval in milliseconds
+- `padZero(num: number)` - Format a number as a two-digit string
+- `vanaToEarthMinutes(vanaDays: number)` - Convert Vana'diel time to Earth time
+- `earthToVanaMinutes(earthMinutes: number)` - Convert Earth time to Vana'diel time
+- `secondsUntilNextDay(currentVanaSeconds: number)` - Calculate time until next game day
+- `isVanadielDay(vanaHours: number)` - Determine if it's currently day or night in Vana'diel
 
 ## License
 

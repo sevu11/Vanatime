@@ -8,23 +8,19 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:vue/vue3-recommended'
+    'plugin:@typescript-eslint/recommended'
   ],
-  parser: 'vue-eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
     sourceType: 'module'
   },
   plugins: [
-    '@typescript-eslint',
-    'vue'
+    '@typescript-eslint'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'vue/no-multiple-template-root': 'off'
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   }
 };
