@@ -83,4 +83,4 @@ Static methods:
 
 ## License
 
-MIT © 2025 Johan Sörman (sevu11) 
+MIT
