@@ -2,9 +2,8 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'vue'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
-    '^.+\\.vue$': '@vue/vue3-jest',
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   moduleNameMapper: {
@@ -19,7 +18,7 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
-    'src/**/*.{ts,vue}',
+    'src/**/*.ts',
     '!src/**/*.d.ts'
   ]
 };
