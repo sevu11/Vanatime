@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/vanatime.svg)](https://www.npmjs.com/package/vanatime)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A TypeScript library for calculating Vana'diel time from Final Fantasy XI.
+A TypeScript library for displaying Vana'diel time. 
 
 ## Installation
 
@@ -83,4 +83,4 @@ Static methods:
 
 ## License
 
-MIT © [Your Name]
+MIT © 2025 Johan Sörman (sevu11) 
