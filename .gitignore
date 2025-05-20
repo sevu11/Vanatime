@@ -1,7 +1,10 @@
 # .gitignore
 
 # Dependencies
-node_modules/
+node_modules/*
+
+# test install
+test-install/*
 
 # Build output
 dist/
