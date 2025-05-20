@@ -46,9 +46,10 @@ export class VanaTimeCalculator {
     'Iceday', 'Lightningday', 'Lightsday', 'Darksday'
   ];
    
+  // Moon phases in the same order as the original JavaScript implementation
   private static readonly MOON_PHASES = [
-    'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
-    'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'
+    'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent',
+    'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous'
   ];
 
   /**
@@ -93,20 +94,49 @@ export class VanaTimeCalculator {
     
     const year = Math.floor(totalDays / 360) + 886; // Vana'diel starts at year 886
     
-    // Calculate moon phase (8 phases, changes every 3.75 Earth days)
-    const moonCycle = totalDays % 30; // 30 day moon cycle
-    const moonPhase = Math.floor(moonCycle / 3.75);
+    // Exact implementation from the original JavaScript code
+    const msGameDay = this.SECONDS_PER_DAY * 1000 / this.VANA_MULTIPLIER; // milliseconds in a game day
+    const localTime = Date.now();
+    
+    // Create moon reference date using the same method as the original JavaScript code
+    const moonDate = new Date();
+    moonDate.setUTCFullYear(2004, 0, 25); // Set date to 2004-01-25
+    moonDate.setUTCHours(2, 31, 12, 0);   // Set time to 02:31:12.0000
+    const moonEpoch = moonDate.getTime();
+    
+    const moonDays = Math.floor((localTime - moonEpoch) / msGameDay) % 84; // 84 day moon cycle
+    
+    // Calculate moon percentage using the exact formula from the original code
+    const moonPercent = -Math.round((42 - moonDays) / 42 * 100);
+    
+    // Determine moon phase based on percentage ranges from the original code
+    // Using the exact same phase mapping as the original JavaScript code
+    let moonPhase = 0;
+    
+    if (moonPercent <= -94) {
+      moonPhase = 0; // Full Moon (end of cycle)
+    } else if (moonPercent >= 90) {
+      moonPhase = 0; // Full Moon (beginning of cycle)
+    } else if (moonPercent >= -93 && moonPercent <= -62) {
+      moonPhase = 1; // Waning Gibbous
+    } else if (moonPercent >= -61 && moonPercent <= -41) {
+      moonPhase = 2; // Last Quarter
+    } else if (moonPercent >= -40 && moonPercent <= -11) {
+      moonPhase = 3; // Waxing Gibbous
+    } else if (moonPercent >= -10 && moonPercent <= 6) {
+      moonPhase = 4; // New Moon
+    } else if (moonPercent >= 7 && moonPercent <= 36) {
+      moonPhase = 5; // Waxing Crescent
+    } else if (moonPercent >= 37 && moonPercent <= 56) {
+      moonPhase = 6; // First Quarter
+    } else if (moonPercent >= 57 && moonPercent <= 89) {
+      moonPhase = 7; // Waning Crescent
+    }
+    
     const moonPhaseName = this.MOON_PHASES[moonPhase];
     
-    // Calculate moon percentage (0-100%)
-    let moonPercent = 0;
-    if (moonPhase < 4) {
-      // Waxing (0% to 100%)
-      moonPercent = Math.round((moonPhase * 25) + ((moonCycle % 3.75) / 3.75 * 25));
-    } else {
-      // Waning (100% to 0%)
-      moonPercent = Math.round(100 - (((moonPhase - 4) * 25) + ((moonCycle % 3.75) / 3.75 * 25)));
-    }
+    // Convert to absolute value for display
+    const displayMoonPercent = Math.abs(moonPercent);
     
     return {
       weekday,
@@ -116,7 +146,7 @@ export class VanaTimeCalculator {
       year,
       moonPhase,
       moonPhaseName,
-      moonPercent
+      moonPercent: displayMoonPercent
     };
   }
 
