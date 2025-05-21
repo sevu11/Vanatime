@@ -7,7 +7,7 @@ node_modules/*
 test-install/*
 
 # Builder scripts
-*.ps1
+publish.ps1
 
 # Build output
 dist/
