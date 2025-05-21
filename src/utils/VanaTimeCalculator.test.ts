@@ -1,4 +1,3 @@
-// src/utils/VanaTimeCalculator.test.ts
 import { VanaTimeCalculator } from './VanaTimeCalculator';
 
 // Mock Date.now() to return a specific timestamp for consistent testing
@@ -9,7 +8,6 @@ describe('VanaTimeCalculator', () => {
   describe('getVanaSeconds', () => {
     it('calculates Vana\'diel seconds correctly', () => {
       const seconds = VanaTimeCalculator.getVanaSeconds();
-      // Value will depend on the MOCK_DATE, but should be a positive integer
       expect(typeof seconds).toBe('number');
       expect(seconds).toBeGreaterThan(0);
       expect(Number.isInteger(seconds)).toBe(true);
@@ -20,21 +18,16 @@ describe('VanaTimeCalculator', () => {
     it('returns a valid time object', () => {
       const time = VanaTimeCalculator.getTime();
       
-      // Check structure
       expect(time).toHaveProperty('hours');
       expect(time).toHaveProperty('minutes');
       expect(time).toHaveProperty('seconds');
-      expect(time).toHaveProperty('formatted');
-      
-      // Check value ranges
+      expect(time).toHaveProperty('formatted');    
       expect(time.hours).toBeGreaterThanOrEqual(0);
       expect(time.hours).toBeLessThan(24);
       expect(time.minutes).toBeGreaterThanOrEqual(0);
       expect(time.minutes).toBeLessThan(60);
       expect(time.seconds).toBeGreaterThanOrEqual(0);
       expect(time.seconds).toBeLessThan(60);
-      
-      // Check formatting
       expect(time.formatted).toMatch(/^\d{2}:\d{2}$/);
     });
   });
@@ -43,19 +36,16 @@ describe('VanaTimeCalculator', () => {
     it('returns a valid date object', () => {
       const date = VanaTimeCalculator.getDate();
       
-      // Check structure
       expect(date).toHaveProperty('weekday');
       expect(date).toHaveProperty('weekdayName');
       expect(date).toHaveProperty('day');
       expect(date).toHaveProperty('month');
-      // monthName is not part of our implementation
-      // expect(date).toHaveProperty('monthName');
       expect(date).toHaveProperty('year');
       expect(date).toHaveProperty('moonPhase');
       expect(date).toHaveProperty('moonPhaseName');
       expect(date).toHaveProperty('moonPercent');
       
-      // Check value ranges
+      
       expect(date.weekday).toBeGreaterThanOrEqual(0);
       expect(date.weekday).toBeLessThan(8);
       expect(date.day).toBeGreaterThanOrEqual(1);

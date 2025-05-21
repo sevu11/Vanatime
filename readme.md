@@ -3,7 +3,9 @@
 [![npm version](https://img.shields.io/npm/v/vanatime.svg)](https://www.npmjs.com/package/vanatime)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A TypeScript library for displaying Vana'diel time. 
+A NPM package for displaying Vana'diel time.
+Re-written from scratch in Typescript. 
+Insprired by [Pyogenes](http://www.pyogenes.com/ffxi/timer/v2.html). 
 
 ## Installation
 
@@ -21,8 +23,6 @@ yarn add vanatime
 - 📏 Fully typed with TypeScript
 
 ## Usage
-
-### Calculator Utility
 
 ```typescript
 import { VanaTimeCalculator } from 'vanatime';
@@ -63,8 +63,6 @@ console.log(`Next Vana'diel day starts in ${nextDayIn} seconds`);
 ```
 
 ## API Reference
-
-### VanaTimeCalculator
 
 Static methods:
 
