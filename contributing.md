@@ -8,9 +8,6 @@ This project contains a TypeScript library for calculating and displaying Vana'd
 vanadiel-time/
 ├── dist/                 # Compiled output (generated on build)
 ├── src/
-│   ├── components/       # Vue components
-│   │   ├── SimpleVanadielClock.vue
-│   │   └── VanadielTime.vue
 │   ├── utils/            # Utility functions
 │   │   ├── VanaTimeCalculator.ts
 │   │   ├── VanaTimeCalculator.test.ts
