@@ -15,7 +15,7 @@ npm install vanatime
 yarn add vanatime
 ```
 
-## Features
+## Features 
 
 - 🕒 Accurate Vana'diel time calculation
 - 📅 Complete date and moon phase information
