@@ -22,6 +22,10 @@ yarn add vanatime
 - 🧮 Standalone calculator with no dependencies
 - 📏 Fully typed with TypeScript
 
+## Example
+
+![Example](https://github.com/sevu11/Vanatime/blob/main/image.png)
+
 ## Usage
 
 ```typescript
